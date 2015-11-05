@@ -3,9 +3,7 @@ Vagrant file for VM with KumbiaPHP ready
 
 You need:
 
-Vagrant
-
-VirtualBox
+Vagrant & VirtualBox installed
 
 then: vagrant up
 
