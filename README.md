@@ -1,4 +1,4 @@
-# Vagrant
+# Vagrant KumbiaPHP
 Vagrant file for VM with KumbiaPHP ready
 
 * Ubuntu 14.04 LTS 64bits
