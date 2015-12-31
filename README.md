@@ -11,7 +11,7 @@ Vagrant file for VM with KumbiaPHP ready
 * Composer
 * Robo with Robofile for KumbiaPHP
 
-With spanish locale.
+Default locale spanish.
 
 Default time-zone is Europe/Madrid
 
