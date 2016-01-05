@@ -19,8 +19,8 @@ timezone="Europe/Madrid"
 
 software="apache2 apache2-utils mysql-server mysql-common mysql-client
  php5-common php5-cgi php5-mysql php5-mcrypt
- php5-curl libapache2-mod-php5 phpMyAdmin 
- git htop mc"
+ php5-curl php5-sqlite libapache2-mod-php5 phpMyAdmin 
+ git htop mc wget"
 
 
 #----------------------------------------------------------#
@@ -36,20 +36,40 @@ sudo apt-get update
 sudo apt-get -y upgrade
 
 # Language settings
-apt-get -y install "language-pack-$lang"
+sudo apt-get -y install "language-pack-$lang"
 export LANG="$LANG"
 
 #----------------------------------------------------------#
 #                   Install repository                     #
 #----------------------------------------------------------#
 # Install packages
-apt-get -y install $software
+sudo apt-get -y install $software
 if [ $? -ne 0 ]; then
     echo 'Error: apt-get install failed'
     exit 1
 fi
 
+sudo php5enmod sqlite3
+# install z-ray
+# apache installer 3823, php5.5 3833, php 5.6 3843
+echo "Downloading z-ray..."
+wget -v http://www.zend.com/en/download/3833?start=true -O /tmp/zray.tar.gz
+sudo tar xvfz /tmp/zray.tar.gz -C /opt
+sudo rm /tmp/zray*
+sudo cp -r /opt/zray-*/zray /opt/zray
+sudo rm -fr /opt/zray-*
 
+sudo cp /opt/zray/zray-ui.conf /etc/apache2/sites-available
+sudo a2ensite zray-ui.conf
+sudo ln -sf /opt/zray/lib/zray.so /usr/lib/php5/20121212/zray.so
+sudo ln -sf /opt/zray/zray.ini /etc/php5/apache2/conf.d/zray.ini
+sudo ln -sf /opt/zray/zray.ini /etc/php5/cli/conf.d/zray.ini
+sudo chown -R www-data:www-data /opt/zray
+
+# enable headers
+sudo a2enmod headers
+# enable mod_rewrite
+sudo a2enmod rewrite
 
 # create project folder
 sudo mkdir "/var/www/html/${FOLDER}"
@@ -58,7 +78,7 @@ sudo mkdir "/var/www/html/${FOLDER}"
 sudo git clone $REPO "/var/www/html/${FOLDER}"
 
 # Permisions for app/temp
-chmod -R 755 "/var/www/html/${FOLDER}/default/app/temp"
+sudo chmod -R 755 "/var/www/html/${FOLDER}/default/app/temp"
 
 # setup hosts file
 VHOST=$(cat <<EOF
@@ -71,17 +91,14 @@ VHOST=$(cat <<EOF
 </VirtualHost>
 EOF
 )
-echo "${VHOST}" > /etc/apache2/sites-available/000-default.conf
-
-# enable mod_rewrite
-sudo a2enmod rewrite
+sudo echo "${VHOST}" > /etc/apache2/sites-available/000-default.conf
 
 # restart apache
-service apache2 restart
+sudo service apache2 restart
 
 # install Composer
 curl -s https://getcomposer.org/installer | php
-mv composer.phar /usr/local/bin/composer
+sudo mv composer.phar /usr/local/bin/composer
 echo "Installed composer globally, use: composer"
 
 
