@@ -17,7 +17,8 @@ lang="es"
 # Set default timezone
 timezone="Europe/Madrid"
 
-software="apache2 apache2-utils mysql-server mysql-common mysql-client
+software="apache2 apache2-utils
+ mysql-server mysql-common mysql-client
  php5-common php5-cgi php5-mysql php5-mcrypt
  php5-curl php5-sqlite libapache2-mod-php5 phpMyAdmin 
  git htop mc wget"
@@ -75,16 +76,16 @@ sudo a2enmod rewrite
 sudo mkdir "/var/www/html/${FOLDER}"
 
 # git clone KumbiaPHP
-sudo git clone $REPO "/var/www/html/${FOLDER}"
+sudo git clone $REPO "/var/www/${FOLDER}"
 
 # Permisions for app/temp
-sudo chmod -R 755 "/var/www/html/${FOLDER}/default/app/temp"
+sudo chmod -R 755 "/var/www/${FOLDER}/default/app/temp"
 
 # setup hosts file
 VHOST=$(cat <<EOF
 <VirtualHost *:80>
-    DocumentRoot "/var/www/html/${FOLDER}/default/public"
-    <Directory "/var/www/html/${FOLDER}/default/public">
+    DocumentRoot "/var/www/${FOLDER}/default/public"
+    <Directory "/var/www/${FOLDER}/default/public">
         AllowOverride All
         Require all granted
     </Directory>
@@ -114,5 +115,7 @@ echo "Installed Robo globally, use: robo"
 # Install KumbiaPHP Robo file
 wget -qO "/var/www/html/${FOLDER}/RoboFile.php" https://raw.githubusercontent.com/KumbiaPHP/Robo-task/master/RoboFile.php
 
+echo "========================================================================"
 echo "KumbiaPHP virtual machine ready \o/"
 echo "ip: 192.168.10.10"
+echo "========================================================================"
