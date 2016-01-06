@@ -53,7 +53,7 @@ sudo php5enmod sqlite3
 # install z-ray
 # apache installer 3823, php5.5 3833, php 5.6 3843
 echo "Downloading z-ray..."
-wget -v http://www.zend.com/en/download/3833?start=true -O /tmp/zray.tar.gz
+wget -v --progress=bar:force http://www.zend.com/en/download/3833?start=true -O /tmp/zray.tar.gz
 sudo tar xvfz /tmp/zray.tar.gz -C /opt
 sudo rm /tmp/zray*
 sudo cp -r /opt/zray-*/zray /opt/zray
