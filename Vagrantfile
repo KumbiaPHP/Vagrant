@@ -17,6 +17,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # The second argument is the path on the guest to mount the folder.
   config.vm.synced_folder "./kumbia", "/var/www/, create: true, group: "www-data", owner: "www-data""
   
+  # Virtual Box specific config
+  config.vm.provider "virtualbox" do |v|
+   	v.name = "KumbiaPHP box for developers"
+   	v.customize ["modifyvm", :id, "--memory", "512"]
+  end
+    
   # Define the bootstrap file: A (shell) script that runs after first setup of your box (= provisioning)
   config.vm.provision :shell, path: "kumbia.sh"
 
