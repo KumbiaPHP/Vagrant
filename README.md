@@ -1,4 +1,4 @@
-![KumbiaPHP](http://proto.kumbiaphp.com/img/kumbiaphp.png)
+![alt text](http://proto.kumbiaphp.com/img/kumbiaphp.png "Logo KumbiaPHP framework")
 
 # Vagrant KumbiaPHP
 Vagrant file for VM with KumbiaPHP ready
