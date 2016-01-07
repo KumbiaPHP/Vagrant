@@ -27,7 +27,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   # Setup port forwarding
   # MySql in local port 33066
-  config.vm.network "forwarded_port", guest: 3306, host: 33066, auto_correct: true
+  # config.vm.network "forwarded_port", guest: 3306, host: 33066, auto_correct: true
     
   # Define the bootstrap file: A (shell) script that runs after first setup of your box (= provisioning)
   config.vm.provision :shell, path: "scripts/main.sh"
