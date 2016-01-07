@@ -11,11 +11,13 @@ Vagrant file for VM with KumbiaPHP ready
 * Composer
 * Robo with Robofile for KumbiaPHP
 
-Default locale spanish.
+## Config.cfg
 
-Default time-zone is Europe/Madrid
+Use this file for your own config
 
-Change time-zone: https://github.com/KumbiaPHP/Vagrant/blob/master/kumbia.sh#L18
+* Default locale spanish.
+
+* Default time-zone is Europe/Madrid
 
 ## Vagrant
 
@@ -25,7 +27,7 @@ then: vagrant up
 
 ## TODO
 
-Add user.sh for personal configs
+<del>Add user.sh for personal configs
 
 Add new containers: LXC, Digitalocean, ....
 
