@@ -1,3 +1,5 @@
+![KumbiaPHP](http://proto.kumbiaphp.com/img/kumbiaphp.png)
+
 # Vagrant KumbiaPHP
 Vagrant file for VM with KumbiaPHP ready
 
@@ -8,8 +10,8 @@ Vagrant file for VM with KumbiaPHP ready
 * KumbiaPHP V1.0 (branch master)
 * Git
 * PHPMyAdmin
-* Composer
-* Robo with Robofile for KumbiaPHP
+* [Composer](https://getcomposer.org/)
+* [Robo](http://robo.li/) with [Robofile for KumbiaPHP](https://github.com/KumbiaPHP/Robo-task)
 
 ## Config.cfg
 
