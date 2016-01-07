@@ -15,13 +15,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Share an additional folder to the guest VM. The first argument is the path on the host to the actual folder.
   # The second argument is the path on the guest to mount the folder.
-  config.vm.synced_folder "./kumbia", "/var/www/, create: true, group: "www-data", owner: "www-data""
+  config.vm.synced_folder "./kumbia", "/var/www/", group: "www-data", owner: "www-data"
   
   # Virtual Box specific config
   config.vm.provider "virtualbox" do |v|
    	v.name = "KumbiaPHP box for developers"
    	v.customize ["modifyvm", :id, "--memory", "512"]
+    #v.customize ["modifyvm", :id, "--cpus", "2"]
+    #v.customize ["modifyvm", :id, "--ioapic", "on"]
   end
+  
+  # Setup port forwarding
+  # MySql in local port 33066
+  config.vm.network "forwarded_port", guest: 3306, host: 33066, auto_correct: true
     
   # Define the bootstrap file: A (shell) script that runs after first setup of your box (= provisioning)
   config.vm.provision :shell, path: "kumbia.sh"
