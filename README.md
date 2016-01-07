@@ -13,7 +13,7 @@ Vagrant file for VM with KumbiaPHP ready
 
 ## Config.cfg
 
-Use this file for your own config
+Use this file for your personal config
 
 * Default locale spanish.
 

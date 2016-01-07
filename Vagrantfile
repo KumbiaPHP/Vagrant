@@ -15,7 +15,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Share an additional folder to the guest VM. The first argument is the path on the host to the actual folder.
   # The second argument is the path on the guest to mount the folder.
-  config.vm.synced_folder "./kumbia", "/var/www/", group: "www-data", owner: "www-data"
+  config.vm.synced_folder "./kumbia", "/var/www/", create: true, group: "www-data", owner: "www-data"
   
   # Virtual Box specific config
   config.vm.provider "virtualbox" do |v|
@@ -30,6 +30,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 3306, host: 33066, auto_correct: true
     
   # Define the bootstrap file: A (shell) script that runs after first setup of your box (= provisioning)
-  config.vm.provision :shell, path: "kumbia.sh"
+  config.vm.provision :shell, path: "scripts/main.sh"
 
 end
