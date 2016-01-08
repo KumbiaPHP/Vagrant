@@ -1,13 +1,5 @@
 #!/bin/bash
 
-sudo php5enmod sqlite3
-
-# enable headers
-sudo a2enmod headers
-# enable mod_rewrite
-sudo a2enmod rewrite
-
-
 # install z-ray
 # apache installer 3823, php5.5 3833, php 5.6 3843
 echo "========================================================================"

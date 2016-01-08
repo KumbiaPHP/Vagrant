@@ -29,9 +29,9 @@ sudo apt-get upgrade -y
 # Language settings
 sudo apt-get install "language-pack-$lang" -y
 #sudo dpkg-reconfigure locales
-export LANG="$LANG"
-export LANGUAGE="$LANG"
-#export LC_ALL="$LANG"
+export LANG="$LANGUAGE"
+export LANGUAGE="$LANGUAGE"
+#export LC_ALL="$LANGUAGE"
 echo "========================================================================"
 
 #----------------------------------------------------------#
@@ -49,14 +49,47 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+#----------------------------------------------------------#
+#                  Use config for install stack            #
+#----------------------------------------------------------#
+
+# Install apache or nginx ?
+if [ $nginx ]; then
+    # Install & configure Nginx
+    source /vagrant/scripts/nginx.sh
+    # Add load php-fpm
+else
+    # Install & configure Apache
+    source /vagrant/scripts/apache.sh
+fi
+
+# Install php5.5 or php7 ?
+if [ $PHP7 ]; then
+    # Install & configure PHP7
+    source /vagrant/scripts/php7.sh
+    # Add load php-fpm
+else
+    # Install & configure php5.5
+    source /vagrant/scripts/php5.sh
+    
+    # Install z-ray
+    source /vagrant/scripts/zray.sh
+fi
+
+
+
 # Install MySql
 source /vagrant/scripts/mysql.sh
-# Install phpmyadmin
-source /vagrant/scripts/phpmyadmin.sh
-# Install z-ray
-source /vagrant/scripts/zray.sh
 
+# The PPA require PHP5
+if [ ! $PHP7 ]; then
+    # Install phpmyadmin
+    source /vagrant/scripts/phpmyadmin.sh
+fi
 
+#----------------------------------------------------------#
+#          Install last KumbiaPHP 1.0 from github          #
+#----------------------------------------------------------#
 # create project folder
 sudo mkdir "/var/www/${FOLDER}"
 
@@ -66,44 +99,13 @@ sudo git clone $REPO "/var/www/${FOLDER}"
 # Permisions for app/temp
 sudo chmod -R 755 "/var/www/${FOLDER}/default/app/temp"
 
-# setup hosts file
-VHOST=$(cat <<EOF
-<VirtualHost *:80>
-    DocumentRoot "/var/www/${FOLDER}/default/public"
-    <Directory "/var/www/${FOLDER}/default/public">
-        AllowOverride All
-        Require all granted
-    </Directory>
-</VirtualHost>
-EOF
-)
-sudo echo "${VHOST}" > /etc/apache2/sites-available/000-default.conf
 
-# restart apache
-sudo service apache2 restart
+# Install Composer
+source /vagrant/scripts/composer.sh
 
-# install Composer
-curl -s https://getcomposer.org/installer | php
-sudo mv composer.phar /usr/local/bin/composer
-echo "Installed composer globally, use: composer"
-echo "========================================================================"
-echo ""
+# Install Robo & KumbiaPHP robofile
+source /vagrant/scripts/robofile.sh
 
-# go to project folder, load Composer packages (not necessary by default)
-#cd "/var/www/${FOLDER}"
-#composer install --dev
-
-# Install Robo
-wget -q http://robo.li/robo.phar
-sudo chmod +x robo.phar && mv robo.phar /usr/bin/robo
-echo "Installed Robo globally, use: robo"
-echo "========================================================================"
-echo ""
-
-# Install KumbiaPHP Robo file
-wget -qO "/var/www/${FOLDER}/RoboFile.php" https://raw.githubusercontent.com/KumbiaPHP/Robo-task/master/RoboFile.php
-echo "Installed Robofile for KumbiaPHP, use: robo"
-echo "========================================================================"
 echo ""
 echo " "
 echo "                :::::::   " 
@@ -126,6 +128,5 @@ echo "KumbiaPHP virtual machine ready \o/"
 echo " "
 echo "      ip: 192.168.10.10"
 echo "      Password MySql & phpmyadmin : $PASSWORD"
-echo "      MySql port in host: 33066"
 echo " "
 echo "========================================================================"

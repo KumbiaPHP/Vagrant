@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # install phpmyadmin
-echo "Preparing phpmyadmin $FOLDER - $PASSWORD"
+echo "Preparing phpmyadmin "
 echo "========================================================================"
 sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/dbconfig-install boolean true"
 sudo debconf-set-selections <<< "phpmyadmin phpmyadmin/app-password-confirm password $PASSWORD"
