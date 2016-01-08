@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# For standalone use
+# php7.sh MODULE1 MODULE2 ...
+# TODO mejorar este hack, y posible tener mas configs
+if [ ! $1 ]
+then 
+    source source /vagrant/config.cfg
+fi
+
 echo "======================================================="
 echo "Installing PHP7 ..."
 echo "======================================================="
