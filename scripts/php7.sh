@@ -27,5 +27,5 @@ sudo a2dismod z-ray
 sudo apt-get install php7.0 php7.0-mysql $PHP7_MODS -y
 
 # Restart apache
-sudo service apache stop
-sudo service apache start
+sudo service apache2 stop
+sudo service apache2 start
