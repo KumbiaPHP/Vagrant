@@ -12,11 +12,11 @@ echo "======================================================="
 # Uninstall php5 for safety
 sudo apt-get remove php5  ^php5- -y > /dev/null
 
-# Install php7
-sudo apt-get install php7.0 php7.0-mysql $PHP7_MODS -y
-
 # Disable zray don't work with php7
 sudo a2dismod z-ray
+
+# Install php7
+sudo apt-get install php7.0 php7.0-mysql $PHP7_MODS -y
 
 # Restart apache
 sudo service apache stop
