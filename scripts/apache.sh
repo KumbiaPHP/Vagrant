@@ -12,8 +12,8 @@ sudo apt-get -y install apache2 apache2-utils
 # setup hosts file
 VHOST=$(cat <<EOF
 <VirtualHost *:80>
-    DocumentRoot "/var/www/${FOLDER}/default/public"
-    <Directory "/var/www/${FOLDER}/default/public">
+    DocumentRoot "/var/www/${FOLDER}"
+    <Directory "/var/www/${FOLDER}">
         AllowOverride All
         Require all granted
     </Directory>
