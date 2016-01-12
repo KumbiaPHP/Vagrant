@@ -1,7 +1,33 @@
 #!/bin/bash
 
-# Stop nginx
-sudo service nginx stop
+
+# For standalone use
+# apache.sh FOLDER
+# TODO Mejorar este hack
+if [ $1 ]
+then 
+    VHOST="$1"
+else
+    source /vagrant/config.cfg
+fi
+
+# if nginx is running
+if pidof nginx > /dev/null
+then
+    # Stop nginx
+    sudo service nginx stop
+    # Stop php-fpm
+    sudo service php5-fpm stop
+    sudo service php7.0-fpm stop
+fi
+
+# if apache2 is installed
+if hash apache2 2>/dev/null
+then
+    # restart apache
+    sudo service apache2 restart
+    exit 0
+fi
 
 echo "==================================================="
 echo "Installing apache2..."
@@ -34,5 +60,5 @@ sudo a2enmod headers
 sudo a2enmod rewrite
 
 # restart apache
-sudo service apache2 stop
-sudo service apache2 start
+sudo service apache2 restart
+   

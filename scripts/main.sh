@@ -12,6 +12,8 @@ echo "Reading config...."
 echo "========================================================================"
 source /vagrant/config.cfg
 
+# Hack for php5-fpm bug https://bugs.launchpad.net/ubuntu/+source/php5/+bug/1242376
+# sudo echo "reload signal SIGUSR2" > /etc/init/php5-fpm.override
 
 #----------------------------------------------------------#
 #                     Configure system                     #
@@ -81,7 +83,7 @@ fi
 # Install MySql
 source /vagrant/scripts/mysql.sh
 
-# The PPA require PHP5
+# The PPA require PHP5, better change for git o composer
 if [ ! $PHP7 ]; then
     # Install phpmyadmin
     source /vagrant/scripts/phpmyadmin.sh
@@ -124,7 +126,7 @@ echo "      ####### :::::::     "
 echo "       ####### :::::::    "
 echo "                :::::::   "
 echo " "                
-echo "KumbiaPHP virtual machine ready \o/"
+echo "KumbiaPHP virtual machine ready ¯\_(ツ)_/¯ "
 echo " "
 echo "      ip: 192.168.10.10"
 echo "      Password MySql & phpmyadmin : $PASSWORD"

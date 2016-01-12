@@ -8,6 +8,18 @@ then
     source source /vagrant/config.cfg
 fi
 
+# if php5 is installed
+if hash php5 2>/dev/null
+then
+    echo "Uninstalling PHP5 for safety"
+    echo "======================================================="
+    # Uninstall php5 for safety
+    sudo apt-get remove php5  ^php5- -y -q
+
+    # Disable zray don't work with php7
+    sudo a2dismod z-ray
+fi
+
 echo "======================================================="
 echo "Installing PHP7 ..."
 echo "======================================================="
@@ -15,17 +27,16 @@ echo "======================================================="
 sudo add-apt-repository ppa:ondrej/php-7.0 -y
 sudo apt-get update -y -q
 
-echo "Uninstalling PHP5 for safety"
-echo "======================================================="
-# Uninstall php5 for safety
-sudo apt-get remove php5  ^php5- -y > /dev/null
 
-# Disable zray don't work with php7
-sudo a2dismod z-ray
 
 # Install php7
 sudo apt-get install php7.0 php7.0-mysql $PHP7_MODS -y
 
-# Restart apache
-sudo service apache2 stop
-sudo service apache2 start
+if [ ! $nginx ]
+then
+    # Restart apache
+    sudo service apache2 stop
+    sudo service apache2 start
+else
+    sudo service nginx restart
+fi

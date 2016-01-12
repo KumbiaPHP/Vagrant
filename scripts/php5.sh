@@ -8,8 +8,15 @@ then
     source /vagrant/config.cfg
 fi
 
-# Uninstall php7 for safety
-sudo apt-get remove php7.0  ^php7.0 -y -q
+# if php7 is installed
+if hash php7.0 2>/dev/null
+then
+    echo "Uninstalling PHP7 for safety"
+    echo "======================================================="
+    # Uninstall php7 for safety
+    sudo apt-get remove php7.0  ^php7.0 -y -q
+fi
+
 
 echo "======================================================="
 echo "Installing PHP5 ..."
@@ -18,3 +25,10 @@ sudo apt-get install php5 $PHP5_MODS -y
 
 sudo php5enmod $PHP5_MODS
                  
+if [ ! $nginx ]
+then
+    # Restart apache
+    sudo service apache2 restart
+else
+    sudo service nginx restart
+fi
