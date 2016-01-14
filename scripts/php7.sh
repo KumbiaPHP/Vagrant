@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # For standalone use
-# php7.sh MODULE1 MODULE2 ...
+# php7.sh MODULE1 MODULE2 ... 
 # TODO mejorar este hack, y posible tener mas configs
 if [ ! $1 ]
 then 
@@ -32,11 +32,4 @@ sudo apt-get update -y -q
 # Install php7
 sudo apt-get install php7.0 php7.0-mysql $PHP7_MODS -y
 
-if [ ! $nginx ]
-then
-    # Restart apache
-    sudo service apache2 stop
-    sudo service apache2 start
-else
-    sudo service nginx restart
-fi
+source /vagrant/scripts/server-restart.sh

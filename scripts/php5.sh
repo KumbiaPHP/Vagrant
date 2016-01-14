@@ -25,10 +25,4 @@ sudo apt-get install php5 $PHP5_MODS -y
 
 sudo php5enmod $PHP5_MODS
                  
-if [ ! $nginx ]
-then
-    # Restart apache
-    sudo service apache2 restart
-else
-    sudo service nginx restart
-fi
+source /vagrant/scripts/server-restart.sh

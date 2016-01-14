@@ -20,11 +20,4 @@ sudo ln -sf /opt/zray/zray.ini /etc/php5/apache2/conf.d/zray.ini
 sudo ln -sf /opt/zray/zray.ini /etc/php5/cli/conf.d/zray.ini
 sudo chown -R www-data:www-data /opt/zray
 
-if [ ! $nginx ]
-then
-    # Restart apache
-    sudo service apache2 stop
-    sudo service apache2 start
-else
-    sudo service nginx restart
-fi
+source /vagrant/scripts/server-restart.sh
