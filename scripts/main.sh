@@ -81,13 +81,11 @@ fi
 
 
 # Install MySql
-source /vagrant/scripts/mysql.sh
-
+#source /vagrant/scripts/mysql.sh
 # The PPA require PHP5, better change for git o composer
-if [ ! $PHP7 ]; then
-    # Install phpmyadmin
-    source /vagrant/scripts/phpmyadmin.sh
-fi
+
+# Install adminer for db administration
+source /vagrant/scripts/adminer.sh
 
 #----------------------------------------------------------#
 #          Install last KumbiaPHP 1.0 from github          #
