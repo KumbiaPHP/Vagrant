@@ -8,6 +8,6 @@ echo "========================================================================"
 echo ""
 
 # Install KumbiaPHP Robo file
-wget -qO "/var/www/${FOLDER}/RoboFile.php" https://raw.githubusercontent.com/KumbiaPHP/Robo-task/master/RoboFile.php
+wget -qO "/var/www/kumbia/default/RoboFile.php" https://raw.githubusercontent.com/KumbiaPHP/Robo-task/master/RoboFile.php
 echo "Installed Robofile for KumbiaPHP, use: robo"
 echo "========================================================================"

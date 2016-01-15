@@ -8,5 +8,4 @@ echo "========================================================================"
 echo ""
 
 # go to project folder, load Composer packages (not necessary by default)
-#cd "/var/www/${FOLDER}"
 #composer install --dev

@@ -37,5 +37,4 @@ sudo echo "${MYCONF}" > /etc/mysql/conf.d/my.cnf
 # Assigning root access on %
 sudo mysql --user=root --password="$PASSWORD" -e  "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '$PASSWORD' WITH GRANT OPTION;FLUSH PRIVILEGES;"
 
-sudo service mysql stop
-sudo service mysql start
+sudo service mysql restart

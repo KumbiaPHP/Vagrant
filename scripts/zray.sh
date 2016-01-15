@@ -5,7 +5,7 @@
 echo "========================================================================"
 echo "Downloading z-ray..."
 echo "========================================================================"
-wget -v -N --progress=bar:force http://www.zend.com/en/download/3833?start=true -O /tmp/zray.tar.gz
+wget -v --progress=bar:force http://www.zend.com/en/download/3833?start=true -O /tmp/zray.tar.gz
 echo "Installing z-ray..."
 echo "========================================================================"
 sudo tar xfz /tmp/zray.tar.gz -C /opt

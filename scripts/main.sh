@@ -7,7 +7,6 @@
 #----------------------------------------------------------#
 export DEBIAN_FRONTEND=noninteractive
 
-FOLDER='kumbia'
 echo "Reading config...."
 echo "========================================================================"
 source /vagrant/config.cfg
@@ -36,6 +35,9 @@ export LANGUAGE="$LANGUAGE"
 #export LC_ALL="$LANGUAGE"
 echo "========================================================================"
 
+# For use debconf selections
+sudo apt-get install debconf-utils -y
+
 #----------------------------------------------------------#
 #                   Install repository                     #
 #----------------------------------------------------------#
@@ -50,6 +52,18 @@ if [ $? -ne 0 ]; then
     echo 'Error: apt-get install failed'
     exit 1
 fi
+
+#----------------------------------------------------------#
+#          Install last KumbiaPHP 1.0 from github          #
+#----------------------------------------------------------#
+
+# git clone KumbiaPHP
+sudo git clone $REPO "/var/www/kumbia"
+#sudo mv /var/www/kumbia/{.[!.],}* /var/www
+#sudo rm /var/www/kumbia*
+sudo rm /var/www/kumbia/.htaccess
+# Permisions for app/temp
+sudo chmod -R 755 "/var/www/kumbia/default/app/temp"
 
 #----------------------------------------------------------#
 #                  Use config for install stack            #
@@ -78,27 +92,12 @@ else
     source /vagrant/scripts/zray.sh
 fi
 
-
-
 # Install MySql
 #source /vagrant/scripts/mysql.sh
 # The PPA require PHP5, better change for git o composer
 
 # Install adminer for db administration
 source /vagrant/scripts/adminer.sh
-
-#----------------------------------------------------------#
-#          Install last KumbiaPHP 1.0 from github          #
-#----------------------------------------------------------#
-# create project folder
-sudo mkdir "/var/www/${FOLDER}"
-
-# git clone KumbiaPHP
-sudo git clone $REPO "/var/www/${FOLDER}"
-
-# Permisions for app/temp
-sudo chmod -R 755 "/var/www/${FOLDER}/default/app/temp"
-
 
 # Install Composer
 source /vagrant/scripts/composer.sh
@@ -127,6 +126,6 @@ echo " "
 echo "KumbiaPHP virtual machine ready ¯\_(ツ)_/¯ "
 echo " "
 echo "      ip: 192.168.10.10"
-echo "      Password MySql & phpmyadmin : $PASSWORD"
+echo "      Password MySql: $PASSWORD"
 echo " "
 echo "========================================================================"

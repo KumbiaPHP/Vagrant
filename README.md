@@ -9,7 +9,8 @@ Vagrant file for VM with KumbiaPHP ready
 * MySQL
 * KumbiaPHP V1.0 (branch master)
 * Git
-* PHPMyAdmin
+* [Z-ray preview](http://www.zend.com/en/products/server/z-ray) (only avaiable in PHP5)
+* [Adminer](https://www.adminer.org/) db administration: mysql, postgresql, mssql, oracle, ...
 * [Composer](https://getcomposer.org/)
 * [Robo](http://robo.li/) with [Robofile for KumbiaPHP](https://github.com/KumbiaPHP/Robo-task)
 
