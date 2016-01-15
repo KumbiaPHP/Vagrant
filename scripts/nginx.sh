@@ -2,16 +2,12 @@
 
 # For standalone use
 # nginx.sh php7
-# TODO Mejorar este hack
-if [ $1 ]
-then 
-    PHP7='true'
-else
-    source /vagrant/config.cfg
-fi
+
+PHP7=${1:-true}   
+#source /vagrant/config.cfg
 # HACK for the php5-fpm
 # For now nginx always use php7
-PHP7=true
+
 
 # if apache is running
 if pidof apache2 > /dev/null
@@ -20,7 +16,7 @@ then
     sudo service apache2 stop
 fi
 
-# if apache2 is installed
+# if nginx is installed
 if hash nginx 2>/dev/null
 then
     # Start nginx
@@ -31,17 +27,17 @@ fi
 # Nginx
 echo "Installing Nginx"
 echo "========================================================================"
-apt-get install nginx -y
+sudo apt-get install nginx -y
 
 # Install php5.5 or php7 fpm?
 if [ $PHP7 ]
 then
     # Install & configure PHP7
-    source /vagrant/scripts/php7.sh
+    source /vagrant/scripts/php7.sh nginx
     sudo apt-get install php7.0-fpm -y
 else
     # Install & configure php5.5
-    source /vagrant/scripts/php5.sh
+    source /vagrant/scripts/php5.sh nginx
     sudo apt-get install php5-fpm -y
 fi
 
