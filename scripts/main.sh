@@ -59,9 +59,9 @@ fi
 
 # git clone KumbiaPHP
 sudo git clone $REPO "/var/www/kumbia"
-#sudo mv /var/www/kumbia/{.[!.],}* /var/www
-#sudo rm /var/www/kumbia*
 sudo rm /var/www/kumbia/.htaccess
+# Install kumbia favicon :)
+sudo cp /var/www/kumbia/default/public/favicon.ico /var/www/kumbia
 # Permisions for app/temp
 sudo chmod -R 755 "/var/www/kumbia/default/app/temp"
 
@@ -91,6 +91,11 @@ else
     # Install z-ray
     source /vagrant/scripts/zray.sh
 fi
+
+
+# Install prettying up apache directory listings, based in apaxy
+# while finising the kumbia index.php
+sudo cp -r /vagrant/scripts/templates/share/. /var/www/kumbia
 
 # Install MySql
 #source /vagrant/scripts/mysql.sh
