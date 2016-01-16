@@ -98,8 +98,8 @@ fi
 sudo cp -r /vagrant/scripts/templates/share/. /var/www/kumbia
 
 # Install MySql
-#source /vagrant/scripts/mysql.sh
-# The PPA require PHP5, better change for git o composer
+source /vagrant/scripts/mysql.sh $PASSWORD
+
 
 # Install adminer for db administration
 source /vagrant/scripts/adminer.sh
