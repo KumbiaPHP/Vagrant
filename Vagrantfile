@@ -30,6 +30,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # config.vm.network "forwarded_port", guest: 3306, host: 33066, auto_correct: true
     
   # Define the bootstrap file: A (shell) script that runs after first setup of your box (= provisioning)
-  config.vm.provision :shell, path: "scripts/main.sh"
+  config.vm.provision :shell, path: "shell/main.sh"
 
 end

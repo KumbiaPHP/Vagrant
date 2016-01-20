@@ -47,7 +47,7 @@ VHOST=$(cat <<EOF
 EOF
 )
 
-#sudo echo "$(source /vagrant/scripts/templates/apache_host)" > /etc/apache2/sites-available/000-default.conf
+#sudo echo "$(source /vagrant/shell/templates/apache_host)" > /etc/apache2/sites-available/000-default.conf
 
 sudo echo "${VHOST}" > /etc/apache2/sites-available/000-default.conf
 

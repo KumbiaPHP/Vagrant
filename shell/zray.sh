@@ -19,10 +19,10 @@ sudo ln -sf /opt/zray/lib/zray.so /usr/lib/php5/20121212/zray.so
 sudo ln -sf /opt/zray/zray.ini /etc/php5/apache2/conf.d/zray.ini
 sudo ln -sf /opt/zray/zray.ini /etc/php5/cli/conf.d/zray.ini
 sudo chown -R www-data:www-data /opt/zray
-source /vagrant/scripts/server-restart.sh
+source /vagrant/shell/server-restart.sh
 
 
 # Hack TODO delete when zray ready
 curl -s http://localhost/default/ > /dev/null
 sudo chown -R www-data:www-data /opt/zray
-source /vagrant/scripts/server-restart.sh
+source /vagrant/shell/server-restart.sh

@@ -2,7 +2,7 @@ server {
     listen 80;
     server_name localhost;
     
-    root /var/www/${FOLDER}/default/public;
+    root /var/www/default/public;
     index index.php index.html;
     
     # Important for VirtualBox

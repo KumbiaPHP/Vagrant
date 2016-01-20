@@ -32,4 +32,4 @@ sudo apt-get update -y -q
 # Install php7
 sudo apt-get install php7.0 php7.0-mysql $PHP7_MODS -y
 
-source /vagrant/scripts/server-restart.sh
+source /vagrant/shell/server-restart.sh

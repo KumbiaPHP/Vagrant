@@ -25,4 +25,4 @@ sudo apt-get install php5 $PHP5_MODS -y
 
 sudo php5enmod $PHP5_MODS
                  
-source /vagrant/scripts/server-restart.sh
+source /vagrant/shell/server-restart.sh

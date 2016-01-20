@@ -72,43 +72,43 @@ sudo chmod -R 755 "/var/www/kumbia/default/app/temp"
 # Install apache or nginx ?
 if [ $nginx ]; then
     # Install & configure Nginx
-    source /vagrant/scripts/nginx.sh
+    source /vagrant/shell/nginx.sh
     # Add load php-fpm
 else
     # Install & configure Apache
-    source /vagrant/scripts/apache.sh
+    source /vagrant/shell/apache.sh
 fi
 
 # Install php5.5 or php7 ?
 if [ $PHP7 ]; then
     # Install & configure PHP7
-    source /vagrant/scripts/php7.sh
+    source /vagrant/shell/php7.sh
     # Add load php-fpm
 else
     # Install & configure php5.5
-    source /vagrant/scripts/php5.sh
+    source /vagrant/shell/php5.sh
     
     # Install z-ray
-    source /vagrant/scripts/zray.sh
+    source /vagrant/shell/zray.sh
 fi
 
 
 # Install prettying up apache directory listings, based in apaxy
 # while finising the kumbia index.php
-sudo cp -r /vagrant/scripts/templates/share/. /var/www/kumbia
+sudo cp -r /vagrant/shell/templates/share/. /var/www/kumbia
 
 # Install MySql
-source /vagrant/scripts/mysql.sh $PASSWORD
+source /vagrant/shell/mysql.sh $PASSWORD
 
 
 # Install adminer for db administration
-source /vagrant/scripts/adminer.sh
+source /vagrant/shell/adminer.sh
 
 # Install Composer
-source /vagrant/scripts/composer.sh
+source /vagrant/shell/composer.sh
 
 # Install Robo & KumbiaPHP robofile
-source /vagrant/scripts/robofile.sh
+source /vagrant/shell/robofile.sh
 
 echo ""
 echo " "

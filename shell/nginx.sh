@@ -33,11 +33,11 @@ sudo apt-get install nginx -y
 if [ $PHP7 ]
 then
     # Install & configure PHP7
-    source /vagrant/scripts/php7.sh nginx
+    source /vagrant/shell/php7.sh nginx
     sudo apt-get install php7.0-fpm -y
 else
     # Install & configure php5.5
-    source /vagrant/scripts/php5.sh nginx
+    source /vagrant/shell/php5.sh nginx
     sudo apt-get install php5-fpm -y
 fi
 
