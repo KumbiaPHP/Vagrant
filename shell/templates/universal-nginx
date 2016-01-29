@@ -1,0 +1,41 @@
+server {
+    listen      80;
+    #listen     443; # https
+    
+    server_name localhost;
+
+    root        /var/www/$host/public;
+
+    access_log  /var/log/nginx/$host-access.log;
+    error_log   /var/log/nginx/$host-error.log error;
+
+    index index.php index.html index.htm;
+
+    try_files $uri $uri/ /index.php;
+
+    #location @rewrite {
+    #    rewrite ^(.*)$ /index.php?_url=$1;
+    #}
+
+    location ~ \.php {
+        # try_files    $uri =404;
+
+        fastcgi_index  /index.php;
+        fastcgi_pass   127.0.0.1:9000;
+
+        include fastcgi_params;
+        #fastcgi_split_path_info       ^(.+\.php)(/.+)$;
+        fastcgi_param PATH_INFO       $fastcgi_path_info;
+        fastcgi_param PATH_TRANSLATED $document_root$fastcgi_path_info;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+
+    #location ~* ^/(css|img|js|flv|swf|download)/(.+)$ {
+    #    root /var/www/$host/public;
+    #}
+
+    # Deny access to hidden files .xxxx
+    location ~ /\. {
+        deny all;
+    }
+}

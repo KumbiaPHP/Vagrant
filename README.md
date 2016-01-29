@@ -1,3 +1,5 @@
+![alt text](http://proto.kumbiaphp.com/img/kumbiaphp.png "Logo KumbiaPHP framework")
+
 # Vagrant KumbiaPHP
 Vagrant file for VM with KumbiaPHP ready
 
@@ -7,15 +9,18 @@ Vagrant file for VM with KumbiaPHP ready
 * MySQL
 * KumbiaPHP V1.0 (branch master)
 * Git
-* PHPMyAdmin
-* Composer
-* Robo with Robofile for KumbiaPHP
+* [Z-ray preview](http://www.zend.com/en/products/server/z-ray) (only avaiable in PHP5)
+* [Adminer](https://www.adminer.org/) db administration: mysql, postgresql, mssql, oracle, ...
+* [Composer](https://getcomposer.org/)
+* [Robo](http://robo.li/) with [Robofile for KumbiaPHP](https://github.com/KumbiaPHP/Robo-task)
 
-Default locale spanish.
+## Config.cfg
 
-Default time-zone is Europe/Madrid
+Use this file for your personal config
 
-Change time-zone: https://github.com/KumbiaPHP/Vagrant/blob/master/kumbia.sh#L18
+* Default locale spanish.
+
+* Default time-zone is Europe/Madrid
 
 ## Vagrant
 
@@ -25,7 +30,7 @@ then: vagrant up
 
 ## TODO
 
-Add user.sh for personal configs
+<del>Add user.sh for personal configs
 
 Add new containers: LXC, Digitalocean, ....
 
