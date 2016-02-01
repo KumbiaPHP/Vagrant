@@ -1,0 +1,9 @@
+<VirtualHost *:80>
+    
+    ServerName {VHOST}
+    DocumentRoot "/var/www/kumbia/{VHOST}/public"
+    <Directory "/var/www/kumbia/{VHOST}/public">
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>

@@ -110,6 +110,9 @@ source /vagrant/shell/composer.sh
 # Install Robo & KumbiaPHP robofile
 source /vagrant/shell/robofile.sh
 
+sudo ln -s /vagrant/shell/a2createvhost.sh /usr/local/sbin
+sudo chmod +x /usr/local/sbin/a2createvhost
+
 echo ""
 echo " "
 echo "                :::::::   " 
