@@ -12,6 +12,14 @@ else
 fi
 
 template=/vagrant/shell/templates/apache_vhost.txt
+
+# when no directory, copy default kumbia app
+if [ ! -d "/var/www/kumbia/${VHOST}" ]
+then
+    sudo mkdir "/var/www/kumbia/${VHOST}"
+    sudo cp -r /var/www/kumbia/default/. "/var/www/kumbia/${VHOST}"
+fi
+
 # setup hosts file
 sudo sed "s/{VHOST}/$VHOST/g" $template > "/etc/apache2/sites-available/${VHOST}.conf"
 

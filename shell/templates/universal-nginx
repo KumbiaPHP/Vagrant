@@ -4,17 +4,17 @@ server {
     
     server_name localhost;
 
-    root        /var/www/$host/public;
+    root        /var/www/kumbia/$host/public;
 
     access_log  /var/log/nginx/$host-access.log;
     error_log   /var/log/nginx/$host-error.log error;
 
     index index.php index.html index.htm;
 
-    try_files $uri $uri/ /index.php;
+    try_files $uri $uri/ /index.php/$1;
 
     #location @rewrite {
-    #    rewrite ^(.*)$ /index.php?_url=$1;
+    #       rewrite ^(.*)$ /index.php?_url=$1;
     #}
 
     location ~ \.php {

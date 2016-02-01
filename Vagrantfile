@@ -23,6 +23,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
    	v.customize ["modifyvm", :id, "--memory", "512"]
     #v.customize ["modifyvm", :id, "--cpus", "2"]
     #v.customize ["modifyvm", :id, "--ioapic", "on"]
+    # Permite symlinks when 
+    #v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant", "1"]
   end
   
   # Setup port forwarding
